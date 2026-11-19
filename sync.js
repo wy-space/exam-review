@@ -108,7 +108,9 @@ const Sync = (() => {
         const ok = await call("query", "sync:login", { pw });
         if (!ok) { m.textContent = "密碼不對，再試一次"; return; }
         localStorage.setItem(PWKEY, pw); d.classList.add("out"); document.documentElement.classList.remove("locked");
-        setTimeout(() => d.remove(), 450); markAll(); save(); run();
+        markAll(); save(); m.textContent = "登入成功，進入首頁…";
+        try { await run(); } catch (e2) {}
+        location.replace("index.html");
       } catch (err) { m.textContent = "連不上雲端：" + (err.message || err); }
     };
   }
