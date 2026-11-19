@@ -5,7 +5,7 @@
 |---|---|---|
 | index.html | 入口網站 | 不用 |
 | subject.html | 單科頁（重點、申論、練習、錯題、新增題目、紀錄） | 不用 |
-| cht.html | 中華電信讀書計畫（今日任務） | 不用 |
+| cht.html | 中華電信讀書計畫（今日任務、開始日、順延） | 不用 |
 | **s-mgmt.js** | 企業管理題庫 | ✏️ 會 |
 | **s-mkt.js** | 行銷學題庫 | ✏️ 會 |
 | **s-eng.js** | 英文題庫＋單字 | ✏️ 會 |
@@ -18,7 +18,7 @@
 | subjects.js | 科目清單（新增科目時才改） | 偶爾 |
 | **sync-config.js** | 雲端同步的 Convex 網址 | 設定一次 |
 | sync.js | 雲端同步程式 | 不用 |
-| core.js、portal.js、subject.js、plan.js、style.css、schedule.js | 程式與樣式 | 不用 |
+| core.js、portal.js、subject.js、plan.js、style.css、schedule.js | 程式與樣式（schedule.js 會依開始日自動排程） | 不用 |
 
 ## 補充題目的兩種方法
 1. **最簡單**：在網站的科目頁按「＋新增題目」直接加。存在這台裝置，備份時一起帶走。

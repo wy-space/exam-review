@@ -146,7 +146,7 @@ main>.card:nth-child(4),main>section:nth-child(4){animation-delay:.18s}main>.car
 .halo::before{content:"";position:absolute;inset:-6px;border-radius:50%;border:1.5px dashed color-mix(in srgb,var(--warm) 55%,transparent);animation:spin 40s linear infinite}
 .halo::after{content:"";position:absolute;inset:14px;border-radius:50%;border:1px solid var(--line)}
 @keyframes spin{to{transform:rotate(360deg)}}
-.biglogo{position:relative;width:100%;animation:float 6s ease-in-out infinite}
+.biglogo{position:relative;width:100%;display:block}
 @keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-10px) rotate(1.5deg)}}
 @media (prefers-color-scheme:dark){.biglogo{filter:brightness(1.8) saturate(.8)}}
 @media (max-width:720px){.hero2{grid-template-columns:auto 1fr;gap:6px 14px;padding-top:18px;align-items:start}.hero-art{width:92px;margin-top:4px}.halo::after{inset:8px}.hero-text{display:contents}.datechip{grid-column:2;grid-row:1;justify-self:start}.greet{grid-column:2;grid-row:2;margin:6px 0 4px}.hero-art{grid-column:1;grid-row:1/3;align-self:center}.poemline{grid-column:1/-1;grid-row:3;margin-top:10px}}
@@ -218,9 +218,53 @@ html.locked body{overflow:hidden}
 #lock{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:opacity .4s}
 #lock.out{opacity:0}
 .lockbox{background:var(--paper);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:30px 28px;width:min(340px,88vw);text-align:center;animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
-.lockbox img{width:96px;animation:float 6s ease-in-out infinite}
+.lockbox .bk{width:110px;display:inline-block}.lockbox img{width:100%;display:block}
 .lockbox h1{font-family:"LXGW WenKai TC","Noto Sans TC",serif;font-size:28px;margin:6px 0 2px}
 .lockbox p{color:var(--muted);margin:0 0 16px;font-size:14px}
 .lockbox input{width:100%;text-align:center;font-size:18px;letter-spacing:.2em;padding:10px;margin-bottom:12px}
 .lockbox .btn{width:100%;justify-content:center;padding:10px}
 .lockmsg{min-height:20px;font-size:13px;color:var(--redt);margin-top:10px}
+
+.startbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:8px 12px;margin-bottom:12px;font-size:14px}
+.startbar input{font-size:14px;padding:4px 8px}
+
+.skipbar{text-align:center;padding:0 10px 18px}.skipbar .small{margin-top:6px}
+
+/* 考試倒數 */
+.countdown .more{position:relative;z-index:1;margin-top:12px;border-top:1px solid color-mix(in srgb,var(--bg) 20%,transparent);padding-top:8px;display:grid;gap:4px;font-size:13px}
+.countdown .more div{display:flex;justify-content:space-between;gap:8px;opacity:.85}.countdown .more b{font-family:"LXGW WenKai TC","Noto Sans TC",serif;font-size:17px;margin-left:auto}
+.cdedit{position:relative;z-index:1;display:inline-block;margin-top:10px;font-size:12px;color:var(--bg);opacity:.75;text-decoration:none;border:1px solid color-mix(in srgb,var(--bg) 35%,transparent);border-radius:999px;padding:3px 10px}
+.cdedit:hover{opacity:1}
+.calhead{display:flex;align-items:center;gap:8px;margin-bottom:10px}.calhead h2{margin:0 auto 0 4px;order:-1;flex:1}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-w{text-align:center;font-size:12px;color:var(--muted);padding:2px 0}
+.cal-c{min-height:64px;border:1px solid var(--line);border-radius:10px;padding:4px 5px;background:var(--bg);display:flex;flex-direction:column;gap:2px;overflow:hidden}
+.cal-c.empty{border:none;background:none}.cal-c.past{opacity:.5}
+.cal-c.today{outline:2px solid var(--warm);outline-offset:-1px}
+.cal-n{font-size:12px;font-weight:700}
+.cal-c.exam{background:var(--warm2);border-color:color-mix(in srgb,var(--warm) 50%,var(--line))}
+.cal-e{font-size:11px;line-height:1.3;color:var(--warm);font-weight:700;word-break:break-all}
+.cal-s{font-size:10px;color:var(--muted)}
+.calnext{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.exrow{display:grid;grid-template-columns:70px 1fr auto;gap:10px;align-items:center;border-top:1px dashed var(--line);padding:10px 0}
+.exrow:first-child{border-top:none}
+.exn{text-align:center}.exn b{display:block;font-family:"LXGW WenKai TC","Noto Sans TC",serif;font-size:28px;color:var(--acc);line-height:1}.exn span{font-size:11px;color:var(--muted)}
+.exf{display:grid;grid-template-columns:1fr 150px;gap:6px}.exf .ex-note{grid-column:1/-1}
+.exadd{display:grid;grid-template-columns:1fr 150px;gap:6px}.exadd #na-note{grid-column:1/2}.exadd .btn{justify-content:center}
+@media (max-width:560px){.exrow{grid-template-columns:56px 1fr}.exb{grid-column:2}.exf{grid-template-columns:1fr}.exadd{grid-template-columns:1fr}.cal-c{min-height:50px}.cal-e{font-size:10px}}
+
+/* 翻書動畫：一頁從右邊翻到左邊 */
+.bk{position:relative;display:block;width:100%;animation:float 6s ease-in-out infinite;--ink-logo:#845c48}
+@media (prefers-color-scheme:dark){.bk{--ink-logo:#e3b59c}}
+.pgflip{position:absolute;left:47%;top:49.5%;width:32%;height:25%;overflow:visible;transform-origin:0 50%;opacity:0;
+  animation:pageflip 5.5s cubic-bezier(.45,.05,.35,1) infinite;animation-delay:1.6s;filter:drop-shadow(0 2px 2px rgba(60,40,20,.15))}
+.pgflip path{fill:var(--paper);stroke:var(--ink-logo);stroke-width:3.2;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.pgflip .ln{fill:none;stroke-width:2;opacity:.55}
+@keyframes pageflip{
+  0%{opacity:0;transform:perspective(320px) rotateY(0deg)}
+  8%{opacity:1;transform:perspective(320px) rotateY(0deg)}
+  22%{transform:perspective(320px) rotateY(-70deg) skewY(-4deg)}
+  38%{opacity:1;transform:perspective(320px) rotateY(-180deg)}
+  46%,100%{opacity:0;transform:perspective(320px) rotateY(-180deg)}}
+.lockbk .pgflip{animation-delay:.8s}
+@media (prefers-reduced-motion:reduce){.pgflip{display:none}}

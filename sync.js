@@ -1,7 +1,7 @@
 // ===== 雲端同步（Convex）=====
 // 同步內容：錯題本、申論熟練度、自己新增的題目、讀書計畫打勾、上次備份時間、練習紀錄
 const Sync = (() => {
-  const KEYS = ["examhub_wrong", "examhub_rate", "examhub_custom", "cht_done", "examhub_lastbackup"];
+  const KEYS = ["examhub_wrong", "examhub_rate", "examhub_custom", "cht_done", "cht_start", "cht_skip", "examhub_exams", "examhub_lastbackup"];
   const URL0 = (typeof CONVEX_URL === "string" ? CONVEX_URL : "").trim().replace(/\/+$/, "");
   const META = "examhub_syncmeta";
   const FIXED = (typeof SYNC_CODE === "string" && /^[A-Za-z0-9-]{16,64}$/.test(SYNC_CODE.trim())) ? SYNC_CODE.trim() : "";
@@ -71,6 +71,7 @@ const Sync = (() => {
       wrong = LS.get("examhub_wrong", {}); rate = LS.get("examhub_rate", {}); custom = LS.get("examhub_custom", { q: [], e: [] });
       if (typeof done !== "undefined") done = LS.get("cht_done", {});
       if (typeof buildBank === "function") buildBank();
+      if (typeof initSchedule === "function") initSchedule();
       if (typeof render === "function") render();
     } catch (e) {}
   }
@@ -94,7 +95,7 @@ const Sync = (() => {
   function showLock(msg) {
     if (!URL0 || document.getElementById("lock")) return;
     const d = document.createElement("div"); d.id = "lock";
-    d.innerHTML = `<form class="lockbox"><img src="logo.png" alt=""><h1>考試複習</h1><p>請輸入密碼</p>
+    d.innerHTML = `<form class="lockbox"><span class="bk lockbk"><img src="logo.png" alt=""><svg class="pgflip" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 16 C28 2 70 -2 100 6 L100 90 C70 84 30 86 0 98 Z"/><path class="ln" d="M12 40 C40 32 70 32 88 36 M12 58 C40 50 70 50 88 54"/></svg></span><h1>考試複習</h1><p>請輸入密碼</p>
       <input type="password" id="lockpw" autocomplete="current-password" placeholder="密碼">
       <button class="btn pri" type="submit">進入</button><div class="lockmsg">${msg || ""}</div></form>`;
     document.body.appendChild(d); document.documentElement.classList.add("locked");
