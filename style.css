@@ -255,7 +255,8 @@ html.locked body{overflow:hidden}
 
 /* 翻書動畫：6 格 sprite，每格 0.25 秒 */
 .bk{position:relative;display:block;width:100%;animation:float 6s ease-in-out infinite}
-.flipani{display:block;width:100%;aspect-ratio:1;background:url(logo-flip.png) 0 0/600% 100% no-repeat;animation:flipsheet 1.5s steps(6) infinite}
+.flipani{display:block;width:100%;aspect-ratio:1;background:url(logo-flip.png?v=15) 0 0/600% 100% no-repeat;animation:flipsheet 1.5s steps(6) infinite}
 @keyframes flipsheet{from{background-position:0 0}to{background-position:120% 0}}
 @media (prefers-color-scheme:dark){.lockbk .flipani{filter:brightness(1.8) saturate(.8)}}
 @media (prefers-reduced-motion:reduce){.flipani{animation:none}}
+.flipani>img{display:none!important}

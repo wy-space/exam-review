@@ -95,7 +95,7 @@ const Sync = (() => {
   function showLock(msg) {
     if (!URL0 || document.getElementById("lock")) return;
     const d = document.createElement("div"); d.id = "lock";
-    d.innerHTML = `<form class="lockbox"><span class="bk lockbk"><span class="flipani" role="img" aria-label="logo"></span></span><h1>考試複習</h1><p>請輸入密碼</p>
+    d.innerHTML = `<form class="lockbox"><span class="bk lockbk"><span class="flipani" role="img" aria-label="logo"><img src="logo.png" alt="" style="width:100%;display:block"></span></span><h1>考試複習</h1><p>請輸入密碼</p>
       <input type="password" id="lockpw" autocomplete="current-password" placeholder="密碼">
       <button class="btn pri" type="submit">進入</button><div class="lockmsg">${msg || ""}</div></form>`;
     document.body.appendChild(d); document.documentElement.classList.add("locked");

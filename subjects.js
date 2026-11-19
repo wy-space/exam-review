@@ -4,4 +4,4 @@
 // 陣列順序就是網站上科目的排列順序
 // ================================================================
 const SUBJECT_FILES = ["mgmt", "mkt", "econ", "eng", "logic", "law"];
-SUBJECT_FILES.forEach(id => document.write('<script src="s-' + id + '.js"><\/script>'));
+SUBJECT_FILES.forEach(id => document.write('<script src="s-' + id + '.js?v=15"><\/script>'));
