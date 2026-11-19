@@ -218,7 +218,7 @@ html.locked body{overflow:hidden}
 #lock{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:opacity .4s}
 #lock.out{opacity:0}
 .lockbox{background:var(--paper);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:30px 28px;width:min(340px,88vw);text-align:center;animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
-.lockbox .bk{width:110px;display:inline-block}.lockbox img{width:100%;display:block}
+.lockbox .bk{width:120px;display:inline-block}
 .lockbox h1{font-family:"LXGW WenKai TC","Noto Sans TC",serif;font-size:28px;margin:6px 0 2px}
 .lockbox p{color:var(--muted);margin:0 0 16px;font-size:14px}
 .lockbox input{width:100%;text-align:center;font-size:18px;letter-spacing:.2em;padding:10px;margin-bottom:12px}
@@ -253,18 +253,9 @@ html.locked body{overflow:hidden}
 .exadd{display:grid;grid-template-columns:1fr 150px;gap:6px}.exadd #na-note{grid-column:1/2}.exadd .btn{justify-content:center}
 @media (max-width:560px){.exrow{grid-template-columns:56px 1fr}.exb{grid-column:2}.exf{grid-template-columns:1fr}.exadd{grid-template-columns:1fr}.cal-c{min-height:50px}.cal-e{font-size:10px}}
 
-/* 翻書動畫：一頁從右邊翻到左邊 */
-.bk{position:relative;display:block;width:100%;animation:float 6s ease-in-out infinite;--ink-logo:#845c48}
-@media (prefers-color-scheme:dark){.bk{--ink-logo:#e3b59c}}
-.pgflip{position:absolute;left:47%;top:49.5%;width:32%;height:25%;overflow:visible;transform-origin:0 50%;opacity:0;
-  animation:pageflip 5.5s cubic-bezier(.45,.05,.35,1) infinite;animation-delay:1.6s;filter:drop-shadow(0 2px 2px rgba(60,40,20,.15))}
-.pgflip path{fill:var(--paper);stroke:var(--ink-logo);stroke-width:3.2;vector-effect:non-scaling-stroke;stroke-linejoin:round}
-.pgflip .ln{fill:none;stroke-width:2;opacity:.55}
-@keyframes pageflip{
-  0%{opacity:0;transform:perspective(320px) rotateY(0deg)}
-  8%{opacity:1;transform:perspective(320px) rotateY(0deg)}
-  22%{transform:perspective(320px) rotateY(-70deg) skewY(-4deg)}
-  38%{opacity:1;transform:perspective(320px) rotateY(-180deg)}
-  46%,100%{opacity:0;transform:perspective(320px) rotateY(-180deg)}}
-.lockbk .pgflip{animation-delay:.8s}
-@media (prefers-reduced-motion:reduce){.pgflip{display:none}}
+/* 翻書動畫：6 格 sprite，每格 0.25 秒 */
+.bk{position:relative;display:block;width:100%;animation:float 6s ease-in-out infinite}
+.flipani{display:block;width:100%;aspect-ratio:1;background:url(logo-flip.png) 0 0/600% 100% no-repeat;animation:flipsheet 1.5s steps(6) infinite}
+@keyframes flipsheet{from{background-position:0 0}to{background-position:120% 0}}
+@media (prefers-color-scheme:dark){.lockbk .flipani{filter:brightness(1.8) saturate(.8)}}
+@media (prefers-reduced-motion:reduce){.flipani{animation:none}}

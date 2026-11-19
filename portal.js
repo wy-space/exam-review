@@ -22,7 +22,7 @@ function home() {
   const m = +t.slice(5, 7), season = m >= 3 && m <= 5 ? "春" : m >= 6 && m <= 8 ? "夏" : m >= 9 && m <= 11 ? "秋" : "冬";
   const g = greet();
   let h = `<section class="hero2">
-    <div class="hero-art rise" style="--d:2"><div class="halo"></div><span class="flyer"><span class="bk"><img class="biglogo" src="logo.png" alt=""><svg class="pgflip" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 16 C28 2 70 -2 100 6 L100 90 C70 84 30 86 0 98 Z"/><path class="ln" d="M12 40 C40 32 70 32 88 36 M12 58 C40 50 70 50 88 54"/></svg></span></span></div>
+    <div class="hero-art rise" style="--d:2"><div class="halo"></div><span class="flyer"><span class="bk"><span class="biglogo flipani" role="img" aria-label="logo"></span></span></span></div>
     <div class="hero-text">
       <span class="datechip rise" style="--d:0">${tw().toLocaleDateString("zh-TW", { timeZone: "UTC", year: "numeric", month: "long", day: "numeric", weekday: "long" })}<i>${season}</i></span>
       <h1 class="greet" aria-label="${esc(g)}">${[...g].map((c, i) => `<span style="--i:${i}">${esc(c)}</span>`).join("")}</h1>
